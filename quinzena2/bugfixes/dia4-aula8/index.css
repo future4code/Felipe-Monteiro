@@ -136,3 +136,7 @@ td button {
 #texto{
     padding-top: 100px;
 }
+.botao-compra:hover {
+    color: white;
+    background-color: #d8db0f;
+}
