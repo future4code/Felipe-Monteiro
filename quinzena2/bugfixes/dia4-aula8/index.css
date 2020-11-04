@@ -140,3 +140,7 @@ td button {
     color: white;
     background-color: #d8db0f;
 }
+.borda1{
+    border: 0px;
+    border-bottom: 3px solid black;
+}
