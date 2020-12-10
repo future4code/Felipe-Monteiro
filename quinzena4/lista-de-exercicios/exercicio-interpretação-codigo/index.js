@@ -7,20 +7,6 @@
 6
 7
 
-4.recebe um array de números, logo depois cria um contador para percorrer esse array 
+4.recebe um array de números, logo depois cria um contador para percorrer esse array e guardar o menor valor e o maior valor, no final mostra -10 1590
+
 */
-const numeros = [25, 12, 55, 64, 121, 44, 11, 84, 51, 48, 14, 73, 111, 283, 1, 99, 13, 31, 83, 131, 1, 1.1, -10, 25, 1590];
-
-let numero1 = Infinity
-let numero2 = 0
-
-for(let numero of numeros){
-    if(numero < numero1){
-        numero1 = numero;
-    }
-    if(numero > numero2){
-        numero2 = numero
-    }
-}
-console.log(numero1)
-console.log(numero2)
