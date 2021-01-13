@@ -1,0 +1,12 @@
+.compartilhar-class{
+    width:100%;
+    display: flex;
+    justify-content: center;
+   
+
+}
+
+.compartilhar-class img{
+    width:24px;
+    margin:8px;
+}
