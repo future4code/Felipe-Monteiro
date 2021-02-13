@@ -1,0 +1,15 @@
+.astro{
+    font-weight: bold;
+    font-weight: 800;
+    font-size: 25px;
+    color: rgb(140, 18, 189);
+}
+.match{
+    font-weight: bold;
+    font-weight: 800;
+    font-size: 25px;
+    color: rgb(22, 198, 221);
+}
+#imagemlogo{
+    float: right;
+}
