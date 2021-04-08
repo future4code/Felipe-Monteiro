@@ -56,7 +56,7 @@ class FormularioCadastro extends React.Component {
             <Form.Label>Nome</Form.Label>
             <Form.Control type="text" placeholder="Digite seu nome aqui." value={this.state.nameInput} onChange={this.onChangeUsersNome}/>
           </Form.Group>
-          <Button variant="primary" onClick={this.criarUsuario} type="submit">
+          <Button variant="primary" onClick={this.criarUsuario}>
             Salvar
           </Button>
           <Link to="/ListaUsers"><Button  id="paginalist" variant="outline-info">ir para página de lista.</Button>{' '}</Link>
