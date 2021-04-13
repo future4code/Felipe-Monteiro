@@ -49,7 +49,7 @@ const verificaImparePar = (num, index, array) => {
         console.log(`${num} é impar`)
     }
 }
-array.filter(verificaImparePar)
+array.map(verificaImparePar)
  */
 
 /*      //////////// EXERCICIO 3 ///////////////
@@ -69,7 +69,31 @@ const permissao = (num, index, array) =>{
         console.log(`a/o ${num.nome} não tem permissão, Não atendeu aos requisitos`)
     }
 }
-pessoas.filter(permissao) */
+pessoas.filter(permissao) 
+
+		////////////// EXERCICIO 4 //////////////
+
+	const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+	]
+
+	const consultasCanceladas = consultas.map((pessoas) =>{
+	if(pessoas.cancelada == true){
+		console.log(Olá, ${pessoas.nome}. Estamos enviando esta mensagem para
+		${ lembrá-lo / lembrá-la } da sua consulta no dia ${pessoas.dataDaConsulta}. Por favor, acuse
+		o recebimento deste e-mail.)
+	}else{
+		Olá, ${ Sr./Sra. } {pessoas.nome}. Infelizmente, sua consulta marcada
+		para o dia ${pessoas.dataDaConsulta} foi cancelada. Se quiser, pode entrar em 
+		contato conosco para remarcá-la 
+	}
+	})
+
+*/
+
 
 const contas = [
 	{ cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
@@ -80,14 +104,10 @@ const contas = [
 	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
 ]
 
-const alterandoSaldo = (num, index, array) => {
-    var x
-    for (x in num){
-        num.saldoTotal = Math.floor(Math.random() * 10000)
-    }
-    console.log(num)
-}
-console.log(contas)
-console.log("///////////////////////////////////////////")
-contas.filter(alterandoSaldo)
+const atualizandoSaldoTotal = contas.map((clientes) =>{
+	const comprasClientes = clientes.compras
+	const total = comprasClientes.reduce((total, currentElement) => total + currentElement)
+	clientes.saldoTotal -= total.
+})
 
+console.log(atualizandoSaldoTotal)
