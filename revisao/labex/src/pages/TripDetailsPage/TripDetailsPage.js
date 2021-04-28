@@ -8,16 +8,17 @@ import Candidates from "../../components/Candidates/Candidates";
 import { goToAreaAdmin } from "../../routes/coordinator";
 import TripsCandidatesCard from "../../components/TripCandidatesCard/TripsCandidatesCard";
 import { useHistory } from "react-router-dom";
+import Approved from '../../components/Approved/Approved'
 const TripDetailsPage = () => {
   useProtectedPage();
   const history = useHistory();
   const params = useParams();
   const [tripDetails, setTripDetails] = useState({});
-  const { candidates, ...details } = tripDetails;
+  const { candidates, approved, ...details } = tripDetails;
 
   const getToken = () => {
     const token = localStorage.getItem("token");
-
+    console.log(details)
     return {
       headers: {
         auth: token,
@@ -47,16 +48,19 @@ const TripDetailsPage = () => {
     getTripDetailsAux();
   }, []);
 
-  const candidatesComponents = candidates.map((item) => {
+  /* const approvedComponents = approved && approved.map((item) =>{
+    return <Approved aux={item.name}/>
+  }) */
+
+  const candidatesComponents = candidates && candidates.map((item) => {
     return (
       <TripsCandidatesCard
-        candidates={item}
+        candidat={item}
         id={params.id}
         refresh={getTripDetailsAux}
       />
     );
   });
-  alert(candidatesComponents)
   return (
     <div>
       <TripDetailsCard
@@ -67,7 +71,7 @@ const TripDetailsPage = () => {
         date={details.date}
       />
        {candidatesComponents} 
-      
+        
     </div>
   );
 };

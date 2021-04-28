@@ -8,38 +8,61 @@ import {
   AccordionDetails,
 } from "@material-ui/core";
 import { ScreenContainer } from "./styled";
-import { goToAreaAdmin } from "../../routes/coordinator";
-import { useHistory } from "react-router-dom";
-import CandidateCard from "../Candidates/CandidateCard";
+import { useHistory, useParams } from "react-router-dom";
+import axios from 'axios'
+import {BASE_URL} from '../../constants/urls'
 
-const TripsCandidatesCard = ({candidates, id, refresh}) => {
+const TripsCandidatesCard = ({candidat, id, refresh}) => {
   const history = useHistory()
-     
-  
-
-  return (
-     <ScreenContainer>
+  const params = useParams()
+  const idCandidate = candidat.id
+  const getToken = () => {
+    const token = localStorage.getItem('token')
+      return {
+        headers: {
+          auth: token,
+        },
+      };
+    };
+  const decideCandidate = async (tripId, candidateId, approved) => {
+    const auth = getToken();
+    const data = {approve: approved};
+    try {
+      const request = await axios.put(`${BASE_URL}felipe/trips/${tripId}/candidates/${candidateId}/decide`, data, auth)
+      console.log(request.data)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+  const decideCandidateAux = (idCandidate, approve) => {
+    decideCandidate(id, idCandidate, approve).then((res) => {
+      alert(res)
+      refresh();
+    });
+  };
+    return (
+      <ScreenContainer>
       <Accordion>
         <AccordionSummary aria-controls="panel2bh-content" id="panel2bh-header" expandIcon={<ExpandMoreIcon />}>
-          <Typography align={'center'}><h3>{candidates.name}</h3></Typography>
+          <Typography align={'center'}><h3>{candidat.name}</h3></Typography>
         </AccordionSummary>
          <AccordionDetails>
           <Typography>
             <div>
-              <p><h5>Nome: {candidates.name}</h5></p>
+              <p><h5>Nome: {candidat.name}</h5></p>
             </div>
             <div>
-              <p><h5>Idade: {candidates.age}</h5></p>
+              <p><h5>Idade: {candidat.age}</h5></p>
             </div>
             <div>
-              <p><h5>Profissão: {candidates.profession}</h5></p>
+              <p><h5>Profissão: {candidat.profession}</h5></p>
             </div>
             <div>
-              <p><h5>Pais: {candidates.country}</h5></p>
+              <p><h5>Pais: {candidat.country}</h5></p>
             </div>
             <div>
               <p><h5>Texto Candidatura:</h5>
-                {candidates.applicationText}
+                {candidat.applicationText}
               </p>
             </div>
             <Button
@@ -47,7 +70,7 @@ const TripsCandidatesCard = ({candidates, id, refresh}) => {
             fullWidth
             variant={'contained'}
             color={"primary"}
-            onClick={() => goToAreaAdmin(history)}
+            onClick={() => decideCandidateAux(candidat.id, true)}
           >
             Aprovar
         </Button>
@@ -56,15 +79,15 @@ const TripsCandidatesCard = ({candidates, id, refresh}) => {
             fullWidth
             variant={'text'}
             color={"primary"}
-            onClick={() => goToAreaAdmin(history)}
+            onClick={() => decideCandidateAux(candidat.id, false)}
           >
             Reprovar
         </Button>
              
           </Typography>
-        </AccordionDetails> */}
+        </AccordionDetails> 
       </Accordion>
-    </ScreenContainer>
-  ); 
+    </ScreenContainer> 
+    );
 }
 export default TripsCandidatesCard;
