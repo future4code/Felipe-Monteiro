@@ -36,7 +36,6 @@ const TripsCandidatesCard = ({candidat, id, refresh}) => {
   }
   const decideCandidateAux = (idCandidate, approve) => {
     decideCandidate(id, idCandidate, approve).then((res) => {
-      alert(res)
       refresh();
     });
   };

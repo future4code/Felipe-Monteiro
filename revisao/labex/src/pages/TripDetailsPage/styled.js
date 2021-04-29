@@ -1,24 +1,22 @@
 import styled from 'styled-components'
 
-export const RecipeImage = styled.img`
-  width: 60vw;
-  max-width: 600px;
-  min-width: 300px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-`
-
 export const ScreenContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin-top: 12vh;
 `
-
-export const RecipeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  max-width: 600px;
-  min-width: 300px;
+export const LogoImage = styled.img`
+    width: 70vw;
+    max-width: 350px;
+    margin: 24px;
+`
+export const StyledButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+`
+export const ButtonDiv = styled.div`
+    margin: 10px;
 `

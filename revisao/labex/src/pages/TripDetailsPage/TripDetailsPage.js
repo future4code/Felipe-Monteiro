@@ -9,6 +9,8 @@ import { goToAreaAdmin } from "../../routes/coordinator";
 import TripsCandidatesCard from "../../components/TripCandidatesCard/TripsCandidatesCard";
 import { useHistory } from "react-router-dom";
 import Approved from '../../components/Approved/Approved'
+import { ScreenContainer } from './styled';
+
 const TripDetailsPage = () => {
   useProtectedPage();
   const history = useHistory();
@@ -18,7 +20,6 @@ const TripDetailsPage = () => {
 
   const getToken = () => {
     const token = localStorage.getItem("token");
-    console.log(details)
     return {
       headers: {
         auth: token,
@@ -47,10 +48,13 @@ const TripDetailsPage = () => {
   useEffect(() => {
     getTripDetailsAux();
   }, []);
-
-  /* const approvedComponents = approved && approved.map((item) =>{
-    return <Approved aux={item.name}/>
-  }) */
+  
+  const approvedComponents = approved && approved.map((aprovados) =>{
+    return (
+      <Approved aux={aprovados}/>
+    );
+    
+  }) 
 
   const candidatesComponents = candidates && candidates.map((item) => {
     return (
@@ -62,17 +66,20 @@ const TripDetailsPage = () => {
     );
   });
   return (
-    <div>
-      <TripDetailsCard
+    <ScreenContainer>
+      <h4>Viagem</h4>
+        <TripDetailsCard
         name={details.name}
         description={details.description}
         planet={details.planet}
         durationInDays={details.durationInDays}
         date={details.date}
       />
-       {candidatesComponents} 
-        
-    </div>
+      <h4>Candidatos</h4>
+      {candidatesComponents}
+      <h4>Aprovados</h4>
+      {approvedComponents}
+    </ScreenContainer>
   );
 };
 
